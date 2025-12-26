@@ -1,0 +1,287 @@
+:root {
+    --card-day: rgba(255, 255, 255, 0.65);
+    --card-night: rgba(30, 39, 46, 0.70);
+    --text-day: #2d3436;
+    --text-night: #ecf0f1;
+    --accent: #0984e3;
+    --accent-hover: #0769b8;
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background: url('daytime.jpg') center/cover no-repeat fixed;
+    color: var(--text-day);
+    transition: background 1.5s ease-in-out, color 0.6s ease;
+    position: relative;
+}
+
+body.night {
+    background: url('nighttime.jpg') center/cover no-repeat fixed;
+    color: var(--text-night);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-day);
+    padding: 20px 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.night header {
+    background: var(--card-night);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 32px;
+    background: linear-gradient(90deg, #0984e3, #74b9ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+.search-box {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+input[type="text"] {
+    flex: 1;
+    min-width: 250px;
+    padding: 18px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 50px;
+    outline: none;
+    background: var(--card-day);
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    backdrop-filter: blur(12px);
+}
+
+input[type="text"]:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+body.night input[type="text"] {
+    background: var(--card-night);
+}
+
+button {
+    padding: 18px 35px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+}
+
+button:hover:not(:disabled) {
+    background: var(--accent-hover);
+    transform: translateY(-3px);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.current-weather, .forecast-day {
+    background: var(--card-day);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 30px;
+    transition: all 0.6s;
+}
+
+body.night .current-weather,
+body.night .forecast-day {
+    background: var(--card-night);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.current-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .current-main { flex-direction: column; text-align: center; }
+    .weather-gif-container { order: -1; margin-bottom: 20px; }
+}
+
+.temp-info h2 { font-size: 72px; font-weight: 700; margin: 0; line-height: 1; }
+.temp-info sup { font-size: 36px; }
+.city { font-size: 36px; font-weight: 600; margin: 10px 0; }
+.description { font-size: 22px; text-transform: capitalize; opacity: 0.9; }
+
+.weather-svg {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.weather-gif-container:hover .weather-svg {
+    transform: scale(1.15) rotate(5deg);
+}
+
+body.night .weather-svg { filter: brightness(1.2); }
+
+.details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.35);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+body.night .detail-item { background: rgba(0, 0, 0, 0.35); }
+
+.detail-item i { font-size: 24px; color: var(--accent); }
+
+.forecast {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.forecast-day {
+    padding: 25px;
+    text-align: center;
+    transition: all 0.4s;
+}
+
+.forecast-day:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.forecast-svg {
+    width: 80px;
+    height: 80px;
+    margin: 15px 0;
+    object-fit: contain;
+    transition: transform 0.4s ease;
+}
+
+.forecast-day:hover .forecast-svg {
+    transform: scale(1.3) rotate(8deg);
+}
+
+.day-name { font-size: 20px; font-weight: 600; margin-bottom: 10px; }
+.forecast-temp-max { font-size: 28px; font-weight: 700; }
+.forecast-temp-min { font-size: 18px; opacity: 0.7; }
+
+.loading, .error {
+    text-align: center;
+    padding: 40px;
+    font-size: 22px;
+    font-weight: 500;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+
+.loading {
+    background: rgba(116, 185, 255, 0.2);
+    color: var(--accent);
+}
+
+.error {
+    background: #fdf2f2;                /* Light red tint (works great in light mode) */
+    color: #e74c3c;
+    border: 1px solid #fab1a0;
+}
+
+body.night .error {
+    background: rgba(231, 76, 60, 0.3); /* Darker red tint in night mode */
+    color: #ff7675;
+    border: 1px solid #e17055;
+}
+
+.auto-location {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 16px;
+    opacity: 0.8;
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

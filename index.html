@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Weather Forecast</h1>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                <i class="fas fa-sun"></i>
+            </button>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="cityInput" placeholder="Search city (e.g., Paris, Tokyo, New York)">
+            <button id="searchBtn">Search</button>
+        </div>
+
+        <div class="auto-location" id="autoLocation" style="display:none;">
+            📍 Detected your location: <strong id="detectedCity"></strong>
+        </div>
+
+        <div class="loading" id="loading" style="display:none;">
+            <i class="fas fa-spinner fa-spin"></i> Loading weather data...
+        </div>
+        <div class="error" id="error" style="display:none;"></div>
+
+        <div id="currentWeather" class="current-weather" style="display:none;">
+            <div class="current-main">
+                <div class="temp-info">
+                    <h2 id="temperature">25°<sup>C</sup></h2>
+                    <div class="city" id="cityName">City, Country</div>
+                    <div class="description" id="description">Clear sky</div>
+                </div>
+                <div class="weather-gif-container">
+                    <img id="weatherSvg" class="weather-svg" src="" alt="Weather icon">
+                </div>
+            </div>
+
+            <div class="details">
+                <div class="detail-item">
+                    <i class="fas fa-tint"></i>
+                    <div>Humidity <strong id="humidity">60%</strong></div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-wind"></i>
+                    <div>Wind Speed <strong id="windSpeed">5 m/s</strong></div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-eye"></i>
+                    <div>Visibility <strong id="visibility">10 km</strong></div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-thermometer-half"></i>
+                    <div>Feels Like <strong id="feelsLike">24°C</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="forecast" id="forecast" style="display:none;"></div>
+
+        <footer>
+            Data provided by <a href="https://openweathermap.org/" target="_blank">OpenWeatherMap API</a>
+        </footer>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
